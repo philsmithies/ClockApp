@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./index.css";
 
 const Clock = () => {
   return (
-    <div className="w-full bg-indigo-900 h-screen flex justify-center items-center 100 flex-col">
+    <div className="w-full h-screen flex justify-center items-center 100 flex-col  background-image">
       <p className="text-3xl text-white pb-5 just">
         🌤 Good Morning, It's Currently
       </p>
