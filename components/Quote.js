@@ -9,7 +9,7 @@ const Quote = () => {
       .get("https://api.quotable.io/random")
       .then(function (response) {
         setQuote(response);
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
