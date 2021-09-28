@@ -44,14 +44,14 @@ export default function Home() {
           <div className="self-start pt-10">
             <Quote />
           </div>
-          <div className="text-left self-start justify-start pb-10">
+          <div className="text-left w-full  flex self-start justify-between pb-10">
             <Clock />
-            <button
-              className="text-white border-2 p-1 mt-2"
+            <img
+              className="self-end pr-20"
+              src="/icon-arrow-up.svg"
               onClick={toggleState}
-            >
-              Toggle
-            </button>
+              alt="Up Arrow"
+            />
           </div>
         </div>
       </div>
