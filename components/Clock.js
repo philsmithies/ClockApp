@@ -7,17 +7,24 @@ const Clock = () => {
   const [location, setLocation] = useState("");
 
   const getTime = () => {
-    axios.get("https://worldtimeapi.org/api/ip/").then((time) => {
-      // console.log(time);
-      setTime(moment(time.data.datetime).format("LT"));
-
-      axios
-        .get(`https://freegeoip.app/json/${time.data.client_ip}`)
-        .then((location) => {
-          // console.log(location);
-          setLocation(location);
-        });
-    });
+    try {
+      axios.get("https://worldtimeapi.org/api/ip/").then((time) => {
+        // console.log(time);
+        setTime(moment(time.data.datetime).format("LT"));
+        try {
+          axios
+            .get(`https://freegeoip.app/json/${time.data.client_ip}`)
+            .then((location) => {
+              // console.log(location);
+              setLocation(location);
+            });
+        } catch (error) {
+          console.log("location api not functioning correctly", err);
+        }
+      });
+    } catch (error) {
+      console.log("time api not functioning correctly", err);
+    }
   };
 
   useEffect(() => {
@@ -27,9 +34,13 @@ const Clock = () => {
   return (
     <div className="text-9xl text-white z-10">
       <p className="text-3xl pb-5 just">🌤 Good Morning, It's Currently</p>
-      <p className="text-9xl text-white">
-        {time} in {location.data.city}
-      </p>
+      {time && location && (
+        <div>
+          <p className="text-9xl text-white">
+            {time} in {location.data.city}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

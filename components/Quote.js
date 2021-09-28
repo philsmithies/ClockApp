@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 const Quote = () => {
   const [quote, setQuote] = useState("");
+  const spinnerEl = useRef(null);
 
   const getQuote = () => {
     axios
@@ -14,6 +15,15 @@ const Quote = () => {
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  const loadQuoteSpinner = () => {
+    const spinner = spinnerEl.current; // corresponding DOM node
+    spinner.className = "animate-spin";
+    setTimeout(() => {
+      spinner.className = "";
+    }, 500);
+    getQuote();
   };
 
   useEffect(() => {
@@ -28,7 +38,12 @@ const Quote = () => {
           <p className="text-white z-10">{`${quote.data.author}`}</p>
         </div>
       )}
-      <img src="/icon-refresh.svg" alt="Refresh" onClick={getQuote} />
+      <img
+        src="/icon-refresh.svg"
+        alt="Refresh"
+        onClick={loadQuoteSpinner}
+        ref={spinnerEl}
+      />
     </div>
   );
 };
