@@ -24,10 +24,11 @@ const Quote = () => {
     <div>
       {quote && (
         <div>
-          <p className="text-white z-10">{`${quote.data.content}`}</p>
+          <p className="text-white z-10 pb-5">{`${quote.data.content}`}</p>
           <p className="text-white z-10">{`${quote.data.author}`}</p>
         </div>
       )}
+      <img src="/icon-refresh.svg" alt="Refresh" onClick={getQuote} />
     </div>
   );
 };
