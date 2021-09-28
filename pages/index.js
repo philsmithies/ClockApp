@@ -4,6 +4,7 @@ import Clock from "../components/Clock";
 import Quote from "../components/Quote";
 import Slider from "../components/Slider";
 import axios from "axios";
+import Image from "next/image";
 
 export default function Home() {
   const [toggle, setToggle] = useState(false);
@@ -39,8 +40,15 @@ export default function Home() {
         <title>Clock App</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="w-full h-screen flex items-center 100 flex-row bg-black">
-        <div className="flex flex-col h-full w-full justify-between pb-10 pl-10  flex-nowrap">
+      <div className="w-full h-screen flex items-center 100 flex-row">
+        {/* <Image
+          src="/bg-image-daytime.jpg"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="cover"
+          className="-z-10"
+        /> */}
+        <div className="flex flex-col h-full w-full justify-between pb-10 pl-10  flex-nowrap bg-black">
           <div className="self-start pt-10">
             <Quote />
           </div>
