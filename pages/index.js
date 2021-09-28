@@ -1,15 +1,37 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Clock from "../components/Clock";
 import Quote from "../components/Quote";
 import Slider from "../components/Slider";
+import axios from "axios";
 
 export default function Home() {
   const [toggle, setToggle] = useState(false);
+  const [timeZone, setTimeZone] = useState("");
+  const [dayOfWeek, setDayOfWeek] = useState("");
+  const [dayOfYear, setDayOfYear] = useState("");
+  const [weekNumber, setWeekNumber] = useState("");
 
   const toggleState = () => {
     setToggle((prevToggle) => !prevToggle);
   };
+
+  const getTime = () => {
+    try {
+      axios.get("https://worldtimeapi.org/api/ip/").then((time) => {
+        setTimeZone(time.data.timezone);
+        setDayOfWeek(time.data.day_of_week);
+        setDayOfYear(time.data.day_of_year);
+        setWeekNumber(time.data.week_number);
+      });
+    } catch (error) {
+      console.log("time api not functioning correctly", err);
+    }
+  };
+
+  useEffect(() => {
+    getTime();
+  }, []);
 
   return (
     <>
@@ -35,7 +57,12 @@ export default function Home() {
       </div>
       {toggle && (
         <div className="text-left self-start justify-start w-full h-96 bg-red-500">
-          <Slider />
+          <Slider
+            timezone={timeZone}
+            dayOfWeek={dayOfWeek}
+            dayOfYear={dayOfYear}
+            weekNumber={weekNumber}
+          />
         </div>
       )}
     </>

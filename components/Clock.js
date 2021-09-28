@@ -4,13 +4,15 @@ import moment from "moment";
 
 const Clock = () => {
   const [time, setTime] = useState("");
+  const [abbreviation, setAbbreviation] = useState("");
   const [location, setLocation] = useState("");
 
   const getTime = () => {
     try {
       axios.get("https://worldtimeapi.org/api/ip/").then((time) => {
         // console.log(time);
-        setTime(moment(time.data.datetime).format("LT"));
+        setAbbreviation(time.data.abbreviation);
+        setTime(moment(time.data.datetime).format("HH:mm"));
         try {
           axios
             .get(`https://freegeoip.app/json/${time.data.client_ip}`)
@@ -33,10 +35,17 @@ const Clock = () => {
 
   return (
     <div className="text-9xl text-white z-10">
-      <p className="text-3xl pb-5 just">🌤 Good Morning, It's Currently</p>
+      <div className="flex flex-nowrap h-8 items-center">
+        <img src="/icon-sun.svg" alt="Sun" />
+        <p className="text-3xl pl-3">Good Morning, It's Currently</p>
+      </div>
+
       {time && location && (
         <div>
-          <p className="text-9xl text-white font-bold">{time}</p>
+          <p className="text-9xl text-white font-bold">
+            {time}
+            <span className="text-6xl font-thin pl-6">{abbreviation}</span>
+          </p>
           <p className="text-3xl font-light">
             {" "}
             in {location.data.city.toUpperCase()}
