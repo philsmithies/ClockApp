@@ -9,11 +9,11 @@ export default function Home() {
         <title>Clock App</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="flex flex-col h-full justify-between pl-10">
+      <div className="flex flex-col h-full w-11/12 justify-between pl-10">
         <div className="self-start pt-10">
           <Quote />
         </div>
-        <div className="text-left self-end justify-end pb-10">
+        <div className="text-left self-start justify-start pb-10">
           <Clock />
         </div>
       </div>
