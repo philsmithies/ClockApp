@@ -1,31 +1,42 @@
 import React from "react";
 
 const Slider = ({
-  timezone = "UK",
+  timezone = "EUROPE/LONDON",
   dayOfWeek = 5,
   dayOfYear = 295,
   weekNumber = 2,
 }) => {
   return (
-    <div className="bg-red-500 grid grid-flow-col grid-rows-2 gap-4 border-white">
-      <div className="border-white h-44">
-        <p> CURRENT TIMEZONE</p>
-        <p> {timezone}</p>
+    <div className="bg-red h-full grid grid-flow-col grid-rows-1 gap-4 border-white justify-evenly items-center">
+      <div>
+        <div className="border-white pb-5">
+          <p className="text-white text-2xl font-normal leading-loose">
+            CURRENT TIMEZONE
+          </p>
+          <p className="text-white text-4xl font-extrabold "> {timezone}</p>
+        </div>
+        <div className="border-white">
+          <p className="text-white text-2xl font-normal leading-loose">
+            DAY OF THE WEEK
+          </p>
+          <p className="text-white text-4xl font-extrabold"> {dayOfWeek}</p>
+        </div>
       </div>
-      <div className="border-white">
-        <p> DAY OF THE WEEK</p>
-        <p> {dayOfWeek}</p>
+      <div class="border-2 divide-solid border-white h-48" />
+      <div>
+        <div className="border-white  pb-5">
+          <p className="text-white text-1xl font-normal leading-loose">
+            DAY OF THE YEAR
+          </p>
+          <p className="text-white text-4xl font-extrabold "> {dayOfYear}</p>
+        </div>
+        <div className="border-white">
+          <p className="text-white text-2xl font-normal leading-loose">
+            WEEK NUMBER
+          </p>
+          <p className="text-white text-4xl font-extrabold "> {weekNumber}</p>
+        </div>
       </div>
-      <div className="border-white">
-        <p> DAY OF THE YEAR</p>
-        <p> {dayOfYear}</p>
-      </div>
-      <div className="border-white">
-        <p>WEEK NUMBER</p>
-        <p> {weekNumber}</p>
-      </div>
-      <div className="border-white">5</div>
-      <div className="border-white">6</div>
     </div>
   );
 };
