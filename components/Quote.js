@@ -8,8 +8,8 @@ const Quote = () => {
     axios
       .get("https://api.quotable.io/random")
       .then(function (response) {
-        console.log(response);
         setQuote(response);
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -22,8 +22,12 @@ const Quote = () => {
 
   return (
     <div>
-      <p className="text-white z-10">{`${quote.data.content}`}</p>
-      <p className="text-white z-10">{`${quote.data.author}`}</p>
+      {quote && (
+        <div>
+          <p className="text-white z-10">{`${quote.data.content}`}</p>
+          <p className="text-white z-10">{`${quote.data.author}`}</p>
+        </div>
+      )}
     </div>
   );
 };
