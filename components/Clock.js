@@ -36,8 +36,10 @@ const Clock = () => {
       <p className="text-3xl pb-5 just">🌤 Good Morning, It's Currently</p>
       {time && location && (
         <div>
-          <p className="text-9xl text-white">
-            {time} in {location.data.city}
+          <p className="text-9xl text-white font-bold">{time}</p>
+          <p className="text-3xl font-light">
+            {" "}
+            in {location.data.city.toUpperCase()}
           </p>
         </div>
       )}
