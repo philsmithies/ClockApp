@@ -31,20 +31,24 @@ const Quote = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {quote && (
-        <div>
-          <p className="text-white z-10 pb-5">{`${quote.data.content}`}</p>
-          <p className="text-white z-10">{`${quote.data.author}`}</p>
+        <div className="flex flex-row w-full">
+          <div className="flex flex-col w-6/12">
+            <p className="text-white z-10 pb-5 pr-2">{`${quote.data.content}`}</p>
+            <p className="text-white z-10">{`${quote.data.author}`}</p>
+          </div>
+          <div className="self-start w-6/12">
+            <img
+              src="/icon-refresh.svg"
+              alt="Refresh"
+              onClick={loadQuoteSpinner}
+              ref={spinnerEl}
+            />
+          </div>
         </div>
       )}
-      <img
-        src="/icon-refresh.svg"
-        alt="Refresh"
-        onClick={loadQuoteSpinner}
-        ref={spinnerEl}
-      />
-    </div>
+    </>
   );
 };
 
