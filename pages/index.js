@@ -1,7 +1,7 @@
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Head from "next/head";
 import Loader from "react-loader-spinner";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, StrictMode } from "react";
 import Clock from "../components/Clock";
 import Scroll from "react-scroll";
 import Quote from "../components/Quote";
@@ -9,6 +9,8 @@ import Slider from "../components/Slider";
 import SeeMoreToggle from "../components/SeeMoreToggle";
 import axios from "axios";
 import Image from "next/image";
+import moment from "moment";
+StrictMode = false;
 
 export default function Home() {
   const [toggle, setToggle] = useState(false);
@@ -17,6 +19,9 @@ export default function Home() {
   const [dayOfWeek, setDayOfWeek] = useState("");
   const [dayOfYear, setDayOfYear] = useState("");
   const [weekNumber, setWeekNumber] = useState("");
+  const [backgroundImage, setBackgroundImage] = useState(
+    "/bg-image-daytime.jpg"
+  );
 
   const scroll = Scroll.animateScroll;
   const sliderEl = useRef(null);
@@ -28,7 +33,7 @@ export default function Home() {
   const getTime = () => {
     try {
       axios.get("https://worldtimeapi.org/api/ip/").then((time) => {
-        toggleNightMode(time.data.datetime);
+        setNightMode(moment(time.data.datetime).format("HH"));
         setTimeZone(time.data.timezone);
         setDayOfWeek(time.data.day_of_week);
         setDayOfYear(time.data.day_of_year);
@@ -36,14 +41,20 @@ export default function Home() {
         // extra time for the content to load in
         setTimeout(() => {
           setLoading(false);
-        }, 2000);
+        }, 1500);
       });
     } catch (error) {
       console.log("time api not functioning correctly", err);
     }
   };
 
-  const setNightMode = (time) => {};
+  const setNightMode = (currentHour) => {
+    if (currentHour > 5 && currentHour < 18) {
+      setBackgroundImage("/bg-image-daytime.jpg");
+    } else {
+      setBackgroundImage("/bg-image-nighttime.jpg");
+    }
+  };
 
   useEffect(() => {
     getTime();
@@ -62,7 +73,7 @@ export default function Home() {
       ) : (
         <div className="w-full h-screen flex flex-row">
           <Image
-            src="/bg-image-daytime.jpg"
+            src={backgroundImage}
             layout="fill"
             objectFit="cover"
             objectPosition="cover"
