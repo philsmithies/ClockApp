@@ -85,7 +85,7 @@ export default function Home() {
             objectPosition="cover"
             className="-z-10 brightness-50"
           />
-          <div className="flex flex-col h-full w-full justify-between pb-10 pl-10 flex-nowrap">
+          <div className="flex flex-col h-full w-full justify-between md:pb-10 pl-5 md:pl-10 flex-nowrap">
             <div className="self-start pt-10">
               <Quote />
             </div>
@@ -97,7 +97,7 @@ export default function Home() {
         </div>
       )}
       {toggle && (
-        <div className="text-left self-start justify-start w-full h-96">
+        <div className="text-left self-start justify-start w-full md:h-96">
           <Slider
             timezone={timeZone}
             dayOfWeek={dayOfWeek}

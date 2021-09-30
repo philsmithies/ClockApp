@@ -34,9 +34,9 @@ const SeeMoreToggle = ({ toggleState, scroll }) => {
   };
 
   return (
-    <div className="flex flex-row align-center pt-5 md:pt-0 p-2 mr-10 z-10">
-      <div className="self-center flex flex-row bg-white rounded-full py-2.5 px-5">
-        <p className="text-black self self-center font-bold text-2xl pr-4">
+    <div className="flex flex-row align-center pt-5 md:pt-0 md:p-2 mr-10 z-10">
+      <div className="self-center flex flex-row bg-white rounded-full py-2 lg:py-2.5 px-4 lg:px-5">
+        <p className="text-black self self-center font-bold text-1xl md:text-2xl pr-3">
           {text}
         </p>
         <img
