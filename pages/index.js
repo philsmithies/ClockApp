@@ -31,10 +31,10 @@ export default function Home() {
       scroll.scrollToBottom({
         duration: 100,
       });
-      seeMore.className = "animate-spin transform rotate-180";
+      seeMore.className = "animate-spin rotate-180";
       setTimeout(() => {
         seeMore.className = "";
-      }, 1000);
+      }, 500);
       setIsRotated180(false);
     } else {
       scroll.scrollToTop({
