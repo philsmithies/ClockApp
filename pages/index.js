@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useState, useEffect, useRef } from "react";
+var Scroll = require("react-scroll");
 import Clock from "../components/Clock";
 import Quote from "../components/Quote";
 import Slider from "../components/Slider";
@@ -16,6 +17,8 @@ export default function Home() {
   const [isRotated180, setIsRotated180] = useState(true);
 
   const seeMoreEl = useRef(null);
+  const sliderEl = useRef(null);
+  const scroll = Scroll.animateScroll;
 
   const toggleState = () => {
     setToggle((prevToggle) => !prevToggle);
@@ -24,19 +27,26 @@ export default function Home() {
   const viewMore = () => {
     const seeMore = seeMoreEl.current; // corresponding DOM node
     if (isRotated180) {
+      toggleState();
+      scroll.scrollToBottom({
+        duration: 100,
+      });
       seeMore.className = "animate-spin transform rotate-180";
       setTimeout(() => {
         seeMore.className = "";
       }, 1000);
       setIsRotated180(false);
     } else {
+      scroll.scrollToTop({
+        duration: 100,
+      });
       seeMore.className = "animate-spin";
       setTimeout(() => {
         seeMore.className = "rotate-180";
+        toggleState();
       }, 500);
       setIsRotated180(true);
     }
-    toggleState();
   };
 
   const getTime = () => {
@@ -62,7 +72,7 @@ export default function Home() {
         <title>Clock App</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="w-full h-screen flex items-center 100 flex-row">
+      <div className="w-full h-screen flex flex-row">
         {/* <Image
           src="/bg-image-daytime.jpg"
           layout="fill"
@@ -70,7 +80,7 @@ export default function Home() {
           objectPosition="cover"
           className="-z-10"
         /> */}
-        <div className="flex flex-col h-full w-full justify-between pb-10 pl-10  flex-nowrap bg-black">
+        <div className="flex flex-col h-full	 w-full justify-between pb-10 pl-10  flex-nowrap bg-black">
           <div className="self-start pt-10">
             <Quote />
           </div>
@@ -95,12 +105,13 @@ export default function Home() {
         </div>
       </div>
       {toggle && (
-        <div className="text-left self-start justify-start w-full h-96 bg-red-500">
+        <div className="text-left self-start justify-start w-full h-96">
           <Slider
             timezone={timeZone}
             dayOfWeek={dayOfWeek}
             dayOfYear={dayOfYear}
             weekNumber={weekNumber}
+            ref={sliderEl}
           />
         </div>
       )}
