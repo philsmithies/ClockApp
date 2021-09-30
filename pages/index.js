@@ -41,7 +41,7 @@ export default function Home() {
         // extra time for the content to load in
         setTimeout(() => {
           setLoading(false);
-        }, 1500);
+        }, 1000);
       });
     } catch (error) {
       console.log("time api not functioning correctly", err);
