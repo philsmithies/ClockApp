@@ -89,7 +89,7 @@ export default function Home() {
             <div className="self-start pt-10">
               <Quote />
             </div>
-            <div className="text-left w-full flex self-start justify-between pb-10">
+            <div className="text-left w-full flex flex-col md:flex-row self-start justify-between pb-10">
               <Clock greeting={greeting} />
               <SeeMoreToggle toggleState={toggleState} scroll={scroll} />
             </div>

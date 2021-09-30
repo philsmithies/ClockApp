@@ -42,11 +42,13 @@ const Clock = ({ greeting }) => {
 
       {time && location && (
         <div>
-          <p className="text-9xl text-white font-bold">
+          <p className="text-9xl text-white font-bold pt-3 md:pt-0">
             {time}
-            <span className="text-6xl font-thin pl-6">{abbreviation}</span>
+            <span className="block md:inline text-4xl md:text-6xl font-thin pl-1 pb-2 md:pl-6">
+              {abbreviation}
+            </span>
           </p>
-          <p className="text-3xl font-light">
+          <p className="text-3xl font-light pl-2">
             {" "}
             in {location.data.city.toUpperCase()}
           </p>
