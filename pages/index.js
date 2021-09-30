@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState, useEffect, useRef } from "react";
-var Scroll = require("react-scroll");
 import Clock from "../components/Clock";
+import Scroll from "react-scroll";
 import Quote from "../components/Quote";
 import Slider from "../components/Slider";
 import SeeMoreToggle from "../components/SeeMoreToggle";
@@ -14,41 +14,15 @@ export default function Home() {
   const [dayOfWeek, setDayOfWeek] = useState("");
   const [dayOfYear, setDayOfYear] = useState("");
   const [weekNumber, setWeekNumber] = useState("");
-  const [isRotated180, setIsRotated180] = useState(true);
 
-  const seeMoreEl = useRef(null);
-  const sliderEl = useRef(null);
   const scroll = Scroll.animateScroll;
+  const sliderEl = useRef(null);
 
   const toggleState = () => {
     setToggle((prevToggle) => !prevToggle);
   };
 
-  const viewMore = () => {
-    const seeMore = seeMoreEl.current; // corresponding DOM node
-    if (isRotated180) {
-      toggleState();
-      scroll.scrollToBottom({
-        duration: 100,
-      });
-      seeMore.className = "animate-spin rotate-180";
-      setTimeout(() => {
-        seeMore.className = "";
-      }, 500);
-      setIsRotated180(false);
-    } else {
-      scroll.scrollToTop({
-        duration: 100,
-      });
-      seeMore.className = "animate-spin";
-      setTimeout(() => {
-        seeMore.className = "rotate-180";
-        toggleState();
-      }, 500);
-      setIsRotated180(true);
-    }
-  };
-
+  // use a custom hook replace this
   const getTime = () => {
     try {
       axios.get("https://worldtimeapi.org/api/ip/").then((time) => {
@@ -86,21 +60,7 @@ export default function Home() {
           </div>
           <div className="text-left w-full flex self-start justify-between pb-10">
             <Clock />
-            /// components
-            <div className="flex flex-row align-center p-2 mr-10">
-              <div className="self-center flex flex-row bg-white rounded-full py-2.5 px-5">
-                <p className="text-black self self-center font-bold text-2xl pr-4">
-                  More
-                </p>
-                <img
-                  className="self-center hover:cursor-pointer"
-                  src="/icon-arrow-up.svg"
-                  alt="Up Arrow"
-                  onClick={viewMore}
-                  ref={seeMoreEl}
-                />
-              </div>
-            </div>
+            <SeeMoreToggle toggleState={toggleState} scroll={scroll} />
           </div>
         </div>
       </div>
