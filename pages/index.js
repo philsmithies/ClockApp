@@ -10,11 +10,11 @@ import SeeMoreToggle from "../components/SeeMoreToggle";
 import axios from "axios";
 import Image from "next/image";
 import moment from "moment";
-StrictMode = false;
 
 export default function Home() {
   const [toggle, setToggle] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [greeting, setGreeting] = useState("Good Morning");
   const [timeZone, setTimeZone] = useState("");
   const [dayOfWeek, setDayOfWeek] = useState("");
   const [dayOfYear, setDayOfYear] = useState("");
@@ -49,9 +49,15 @@ export default function Home() {
   };
 
   const setNightMode = (currentHour) => {
-    if (currentHour > 5 && currentHour < 18) {
-      setBackgroundImage("/bg-image-daytime.jpg");
-    } else {
+    if (currentHour >= 3 && currentHour < 12) {
+      setGreeting("Good Morning");
+    } else if (currentHour >= 12 && currentHour < 15) {
+      setGreeting("Good Afternoon");
+    } else if (currentHour >= 15 && currentHour < 20) {
+      setGreeting("Good Evening");
+      setBackgroundImage("/bg-image-nighttime.jpg");
+    } else if (currentHour >= 20 && currentHour < 3) {
+      setGreeting("Good Night");
       setBackgroundImage("/bg-image-nighttime.jpg");
     }
   };
@@ -84,7 +90,7 @@ export default function Home() {
               <Quote />
             </div>
             <div className="text-left w-full flex self-start justify-between pb-10">
-              <Clock />
+              <Clock greeting={greeting} />
               <SeeMoreToggle toggleState={toggleState} scroll={scroll} />
             </div>
           </div>

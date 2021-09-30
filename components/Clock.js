@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 
-const Clock = () => {
+const Clock = ({ greeting }) => {
   const [time, setTime] = useState("");
   const [abbreviation, setAbbreviation] = useState("");
   const [location, setLocation] = useState("");
@@ -37,7 +37,7 @@ const Clock = () => {
     <div className="text-9xl text-white z-10">
       <div className="flex flex-nowrap h-8 items-center">
         <img src="/icon-sun.svg" alt="Sun" />
-        <p className="text-3xl pl-3">Good Morning, It's Currently</p>
+        <p className="text-3xl pl-3">{greeting}, It's Currently</p>
       </div>
 
       {time && location && (

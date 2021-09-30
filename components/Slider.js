@@ -1,13 +1,8 @@
 import React from "react";
 
-const Slider = ({
-  timezone = "EUROPE/LONDON",
-  dayOfWeek = 5,
-  dayOfYear = 295,
-  weekNumber = 2,
-}) => {
+const Slider = ({ timezone, dayOfWeek, dayOfYear, weekNumber }) => {
   return (
-    <div className="bg-gray-800 h-full grid grid-flow-col grid-rows-1 gap-4 border-white justify-evenly items-center">
+    <div className="shadow-inner bg-gray-800 h-full grid grid-flow-col grid-rows-1 gap-4 border-white justify-evenly items-center">
       <div>
         <div className="border-white pb-5">
           <p className="text-white text-2xl font-normal leading-loose">

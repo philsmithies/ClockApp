@@ -7,6 +7,12 @@ module.exports = {
       zIndex: {
         "-10": "-10",
       },
+      boxShadow: {
+        vignette: "box-shadow: inset 0 0 5em 1em #000",
+      },
+      boxShadow: {
+        inner: "inset 0 0 4em 1em #000",
+      },
     },
   },
   variants: {
