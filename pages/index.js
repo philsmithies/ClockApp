@@ -1,8 +1,9 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Clock from "../components/Clock";
 import Quote from "../components/Quote";
 import Slider from "../components/Slider";
+import SeeMoreToggle from "../components/SeeMoreToggle";
 import axios from "axios";
 import Image from "next/image";
 
@@ -12,9 +13,30 @@ export default function Home() {
   const [dayOfWeek, setDayOfWeek] = useState("");
   const [dayOfYear, setDayOfYear] = useState("");
   const [weekNumber, setWeekNumber] = useState("");
+  const [isRotated180, setIsRotated180] = useState(true);
+
+  const seeMoreEl = useRef(null);
 
   const toggleState = () => {
     setToggle((prevToggle) => !prevToggle);
+  };
+
+  const viewMore = () => {
+    const seeMore = seeMoreEl.current; // corresponding DOM node
+    if (isRotated180) {
+      seeMore.className = "animate-spin transform rotate-180";
+      setTimeout(() => {
+        seeMore.className = "";
+      }, 1000);
+      setIsRotated180(false);
+    } else {
+      seeMore.className = "animate-spin";
+      setTimeout(() => {
+        seeMore.className = "rotate-180";
+      }, 500);
+      setIsRotated180(true);
+    }
+    toggleState();
   };
 
   const getTime = () => {
@@ -52,14 +74,23 @@ export default function Home() {
           <div className="self-start pt-10">
             <Quote />
           </div>
-          <div className="text-left w-full  flex self-start justify-between pb-10">
+          <div className="text-left w-full flex self-start justify-between pb-10">
             <Clock />
-            <img
-              className="self-end pr-20"
-              src="/icon-arrow-up.svg"
-              onClick={toggleState}
-              alt="Up Arrow"
-            />
+            /// components
+            <div className="flex flex-row align-center p-2 mr-10">
+              <div className="self-center flex flex-row bg-white rounded-full py-2.5 px-5">
+                <p className="text-black self self-center font-bold text-2xl pr-4">
+                  More
+                </p>
+                <img
+                  className="self-center hover:cursor-pointer"
+                  src="/icon-arrow-up.svg"
+                  alt="Up Arrow"
+                  onClick={viewMore}
+                  ref={seeMoreEl}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
