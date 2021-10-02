@@ -77,7 +77,7 @@ export default function Home() {
           <Loader type="Puff" color="#fff" height={100} width={100} />
         </div>
       ) : (
-        <div className="w-full h-screen flex flex-row">
+        <div className="w-full h-screen flex flex-row bg-black">
           <Image
             src={backgroundImage}
             layout="fill"
