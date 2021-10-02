@@ -1,7 +1,6 @@
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Head from "next/head";
-import Loader from "react-loader-spinner";
-import { useState, useEffect, useRef, StrictMode } from "react";
+import { useState, useEffect, useRef } from "react";
 import Clock from "../components/Clock";
 import Scroll from "react-scroll";
 import Quote from "../components/Quote";
@@ -74,10 +73,14 @@ export default function Home() {
       </Head>
       {loading ? (
         <div className="w-full h-screen flex flex-row bg-black justify-center items-center">
-          <Loader type="ThreeDots" color="#fff" height={100} width={100} />
+          <div class="flex items-center justify-center space-x-2 animate-pulse">
+            <div class="w-8 h-8 bg-white rounded-full"></div>
+            <div class="w-8 h-8 bg-white rounded-full"></div>
+            <div class="w-8 h-8 bg-white rounded-full"></div>
+          </div>
         </div>
       ) : (
-        <div className="w-full h-screen flex flex-row bg-black">
+        <div className="w-full h-screen flex flex-row">
           <Image
             src={backgroundImage}
             layout="fill"
