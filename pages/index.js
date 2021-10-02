@@ -74,7 +74,7 @@ export default function Home() {
       </Head>
       {loading ? (
         <div className="w-full h-screen flex flex-row bg-black justify-center items-center">
-          <Loader type="Puff" color="#fff" height={100} width={100} />
+          <Loader type="ThreeDots" color="#fff" height={100} width={100} />
         </div>
       ) : (
         <div className="w-full h-screen flex flex-row">
