@@ -16,3 +16,7 @@
 - World Time API to set the time based on the visitor's IP address. I additionally used this to set extra data under the 'MORE' toggle on the app.
 - IP Geolocation API for setting the timezone and closest city to the user.
 - Programming Quotes API.
+
+## To Change
+
+- Loading banner doesn't work in safari on iOS
